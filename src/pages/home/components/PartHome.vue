@@ -2,7 +2,7 @@
   <div class="partone">
     <!--<home-header></home-header>-->
     <!--<home-index></home-index>-->
-    <swiper-part></swiper-part>
+    <swiper-part :list="bannerlist"></swiper-part>
     <recommend-part :list="recommendlist"></recommend-part>
     <sing-part :list="singlist"></sing-part>
   </div>
@@ -13,8 +13,7 @@
   import SwiperPart from './component1/SwiperPart'
   import RecommendPart from './component1/Recommend'
   import SingPart from './component1/RecommendSing'
-  // import HomeHeader from './HomeHeader'
-  // import HomeIndex from './Index'
+
   import axios from 'axios'
     export default {
         name: "PartHome",
@@ -26,10 +25,27 @@
       data:function () {
         return {
           recommendlist:[],
-          singlist:[]
+          singlist:[],
+          bannerlist:[]
         }
       },
       methods :{
+      getBannerInfo(){
+        axios.get('../../../../../static/banner.json')
+             .then(this.getBannerInfoSucc)
+             .catch(function (err) {
+               console.log(err)
+             })
+            },
+      getBannerInfoSucc(res){
+              var res=res.data;
+              if(res.code==200&&res){
+               this.bannerlist=res.banners;
+               console.log("bannerlist");
+               console.log(this.bannerlist);
+              }
+
+            },
       getHomeInfo(){
         axios.get('../../../../../static/recommendlist.json')
              .then(this.getHomeInfoSucc)
@@ -37,7 +53,7 @@
                console.log(err)
              })
             },
-            getHomeInfoSucc(res){
+      getHomeInfoSucc(res){
               res=res.data;
               if(res.ret&&res.data){
                 const data=res.data;
@@ -46,9 +62,12 @@
               }
 
             }
+
     },
       mounted() {
-          this.getHomeInfo()
+          this.getBannerInfo();
+          this.getHomeInfo();
+
       }
     }
 </script>

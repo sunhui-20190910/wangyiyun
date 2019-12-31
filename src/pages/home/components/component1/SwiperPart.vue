@@ -1,14 +1,8 @@
 <template>
   <div class="sw">
   <mt-swipe :auto="4000" class="wrapper">
-  <mt-swipe-item class="swiper-item">
-    <img class="swiper-img" src="http://p1.music.126.net/Vhg2myyZoEHeggF7gir6oA==/109951164565077742.jpg">
-  </mt-swipe-item>
-  <mt-swipe-item class="swiper-item">
-    <img class="swiper-img" src="http://p1.music.126.net/Vhg2myyZoEHeggF7gir6oA==/109951164565077742.jpg">
-  </mt-swipe-item>
-  <mt-swipe-item class="swiper-item">
-    <img class="swiper-img" src="http://p1.music.126.net/Vhg2myyZoEHeggF7gir6oA==/109951164565077742.jpg">
+  <mt-swipe-item class="swiper-item" v-for="(item,index) in list " :key="index">
+    <img class="swiper-img"  :src=item.picUrl>
   </mt-swipe-item>
   </mt-swipe>
 </div>
@@ -17,29 +11,15 @@
 
 <script>
     export default {
-        name: "SwiperPart"
-    //      data() {
-    //   return {
-    //     imglist: [
-    //       {
-    //         id:'001',
-    //         imgurl:"http://p1.music.126.net/Vhg2myyZoEHeggF7gir6oA==/109951164565077742.jpg"
-    //       },
-    //       {
-    //         id:'002',
-    //         imgurl:"http://p1.music.126.net/G_BWvm6jI-o4E57ELKo-sg==/109951164565672890.jpg"
-    //       },
-    //       {
-    //         id:'003',
-    //         imgurl:"http://p1.music.126.net/Vhg2myyZoEHeggF7gir6oA==/109951164565077742.jpg"
-    //       },
-    //       {
-    //         id:'004',
-    //         imgurl:"http://p1.music.126.net/Vhg2myyZoEHeggF7gir6oA==/109951164565077742.jpg"
-    //       }
-    //     ]
-    //   }
-    // },
+        name: "SwiperPart",
+        props:{
+            list : Array
+         },
+        mounted() {
+          console.log("------------5");
+          console.log(this.list);
+      }
+
     }
 </script>
 

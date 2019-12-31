@@ -31,7 +31,6 @@
     letter (){
       console.log("le"+this.letter);
       const element=this.$refs[this.letter][0];
-      console.log(element);
       this.scroll.scrollToElement(element);//滚动到指定位置
 
     }

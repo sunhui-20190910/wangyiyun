@@ -1,4 +1,5 @@
 <template>
+<div>
       <ul class="list">
         <li v-for="item in list" class="item"
         :ref="item"
@@ -8,6 +9,7 @@
         @touchend="handleTouchEnd"
         @click="handleletterClick">{{item}}</li>
       </ul>
+</div>
 </template>
 
 <script>
@@ -59,11 +61,11 @@
 <style scoped lang="stylus">
 
  .list
-    display flex
+    display block
     position absolute
     top .88em
     right 0
-
+    bottom 0
     width .4rem
     flex-direction column
     justify-content center
